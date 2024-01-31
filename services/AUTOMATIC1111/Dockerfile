@@ -19,6 +19,9 @@ FROM pytorch/pytorch:2.1.2-cuda12.1-cudnn8-runtime
 
 ENV DEBIAN_FRONTEND=noninteractive PIP_PREFER_BINARY=1
 
+RUN  sed -i "s@http://.*archive.ubuntu.com@http://mirrors.huaweicloud.com@g" /etc/apt/sources.list && \
+  sed -i "s@http://.*security.ubuntu.com@http://mirrors.huaweicloud.com@g" /etc/apt/sources.list
+
 RUN --mount=type=cache,target=/var/cache/apt \
   apt-get update && \
   # we need those
